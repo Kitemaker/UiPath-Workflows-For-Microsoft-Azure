@@ -1,0 +1,14 @@
+{
+  "name": "UiPath-Workflows-For-Microsoft-Azure",
+  "description": "Project",
+  "main": "CreateAzureUserGroup.xaml",
+  "dependencies": {},
+  "excludedData": [
+    "Private:*",
+    "*password*"
+  ],
+  "toolVersion": "18.2",
+  "projectVersion": "1.0.6814.31917",
+  "packOptions": {},
+  "runtimeOptions": {}
+}

@@ -75,290 +75,326 @@
       <Variable x:TypeArguments="x:Object" Default="[Nothing]" Name="defaultProfileMain" />
       <Variable x:TypeArguments="x:Object" Default="[Nothing]" Name="appServicePlanMain" />
       <Variable x:TypeArguments="x:Object" Default="[Nothing]" Name="webAppOut" />
-      <Variable x:TypeArguments="x:String" Default="myWebAppSJ12345" Name="webAppNameMain" />
-      <Variable x:TypeArguments="x:String" Default="myWebAppSJ1234Free" Name="appServiceNameMain" />
+      <Variable x:TypeArguments="x:String" Default="myWebAppSJ1234567" Name="webAppNameMain" />
+      <Variable x:TypeArguments="x:String" Default="myWebAppSJ123Free" Name="appServiceNameMain" />
       <Variable x:TypeArguments="x:String" Default="South India" Name="resGroupLocationMain" />
-      <Variable x:TypeArguments="x:String" Default="resGroupSJ1234" Name="resGroupNameMain" />
+      <Variable x:TypeArguments="x:String" Default="resGroupSJ123" Name="resGroupNameMain" />
       <Variable x:TypeArguments="x:String" Default="Free" Name="appServiceTierMain" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="createResGroupMain" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="createAppServiceMain" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_6">
-        <Sequence DisplayName="Log OnAzure Account" sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="sco:Collection(x:Object)" Name="connectCmdOut" />
-            <Variable x:TypeArguments="x:Object" Default="[Nothing]" Name="userProfile" />
-          </Sequence.Variables>
-          <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Provide User Name and Password on the Log On Dialg Box" />
-          <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_1">
-            <TryCatch.Try>
-              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
-                <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="Connect-AzureRmAccount" DisplayName="Logon to Azure Account" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_1" Output="[connectCmdOut]" />
-                <Assign DisplayName="Get Default Profile" sap2010:WorkflowViewState.IdRef="Assign_1">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Object">[userProfile]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Object">[connectCmdOut.Item(0)]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Object">[userProfileOut]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Object">[userProfile]</InArgument>
-                  </Assign.Value>
-                </Assign>
-              </Sequence>
-            </TryCatch.Try>
-            <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
-                <ActivityAction x:TypeArguments="s:Exception">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                  </ActivityAction.Argument>
-                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[exception.Message]" />
-                </ActivityAction>
-              </Catch>
-            </TryCatch.Catches>
-          </TryCatch>
-        </Sequence>
+      <FlowStep x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="FlowStep_26">
+        <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Activity To Create Azure Web App " />
         <FlowStep.Next>
-          <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_16">
-            <Assign DisplayName="Variable to Store User Credentials" sap2010:WorkflowViewState.IdRef="Assign_6">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:Object">[defaultProfileMain]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:Object">[userProfileOut]</InArgument>
-              </Assign.Value>
-            </Assign>
+          <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+            <Sequence DisplayName="Log OnAzure Account" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sco:Collection(x:Object)" Name="connectCmdOut" />
+                <Variable x:TypeArguments="x:Object" Default="[Nothing]" Name="userProfile" />
+              </Sequence.Variables>
+              <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Provide User Name and Password on the Log On Dialg Box" />
+              <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                <TryCatch.Try>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="Connect-AzureRmAccount" DisplayName="Logon to Azure Account" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_1" Output="[connectCmdOut]" />
+                    <Assign DisplayName="Get Default Profile" sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[userProfile]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[connectCmdOut.Item(0)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[userProfileOut]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[userProfile]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[exception.Message]" />
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </Sequence>
             <FlowStep.Next>
-              <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_9">
-                <Assign DisplayName="Increment LogOn Attemp" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_16">
+                <Assign DisplayName="Variable to Store User Credentials" sap2010:WorkflowViewState.IdRef="Assign_6">
                   <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[logOnCountMain]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Object">[defaultProfileMain]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[logOnCountMain + 1]</InArgument>
+                    <InArgument x:TypeArguments="x:Object">[userProfileOut]</InArgument>
                   </Assign.Value>
                 </Assign>
                 <FlowStep.Next>
-                  <FlowDecision x:Name="__ReferenceID4" Condition="[defaultProfileMain is Nothing]" DisplayName="Login Success?" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-                    <FlowDecision.True>
-                      <FlowDecision x:Name="__ReferenceID6" Condition="[logOnCountMain &lt;= 2]" DisplayName="Exceed Attemp Limit?" sap2010:WorkflowViewState.IdRef="FlowDecision_2" True="{x:Reference __ReferenceID0}">
-                        <FlowDecision.False>
-                          <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_10">
-                            <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Failed To Logon on Azure Account" />
-                            <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_27">
-                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="Activity Finished" />
-                              </FlowStep>
-                            </FlowStep.Next>
-                          </FlowStep>
-                        </FlowDecision.False>
-                      </FlowDecision>
-                    </FlowDecision.True>
-                    <FlowDecision.False>
-                      <FlowDecision x:Name="__ReferenceID16" Condition="[createResGroupMain = True]" DisplayName="New Resource Group?" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                  <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                    <Assign DisplayName="Increment LogOn Attemp" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[logOnCountMain]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[logOnCountMain + 1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <FlowStep.Next>
+                      <FlowDecision x:Name="__ReferenceID4" Condition="[defaultProfileMain is Nothing]" DisplayName="Login Success?" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
                         <FlowDecision.True>
-                          <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_12">
-                            <TryCatch DisplayName="Create ResourceGroup" sap2010:WorkflowViewState.IdRef="TryCatch_4">
-                              <TryCatch.Variables>
-                                <Variable x:TypeArguments="sco:Collection(x:Object)" Name="resGrpColl" />
-                              </TryCatch.Variables>
-                              <TryCatch.Try>
-                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Object">[resGrpOut]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
-                                    <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="New-AzureRmResourceGroup" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_4" Output="[resGrpColl]">
-                                      <ui:InvokePowerShell.Parameters>
-                                        <InArgument x:TypeArguments="x:String" x:Key="Name">[resGroupNameMain]</InArgument>
-                                        <InArgument x:TypeArguments="x:String" x:Key="Location">[resGroupLocationMain]</InArgument>
-                                        <InArgument x:TypeArguments="x:Object" x:Key="DefaultProfile">[defaultProfileMain]</InArgument>
-                                      </ui:InvokePowerShell.Parameters>
-                                    </ui:InvokePowerShell>
-                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
-                                      <Assign.To>
-                                        <OutArgument x:TypeArguments="x:Object">[resGrpOut]</OutArgument>
-                                      </Assign.To>
-                                      <Assign.Value>
-                                        <InArgument x:TypeArguments="x:Object">[resGrpColl(0)]</InArgument>
-                                      </Assign.Value>
-                                    </Assign>
-                                  </Sequence>
-                                </Sequence>
-                              </TryCatch.Try>
-                              <TryCatch.Catches>
-                                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
-                                  <ActivityAction x:TypeArguments="s:Exception">
-                                    <ActivityAction.Argument>
-                                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                    </ActivityAction.Argument>
-                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[exception.Message]" />
-                                  </ActivityAction>
-                                </Catch>
-                              </TryCatch.Catches>
-                            </TryCatch>
-                            <FlowStep.Next>
-                              <FlowDecision x:Name="__ReferenceID9" Condition="[resGrpOut is Nothing]" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
-                                <FlowDecision.True>
-                                  <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_15">
-                                    <WriteLine DisplayName="Fail Message" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="Resource Group  is Not Created" />
+                          <FlowDecision x:Name="__ReferenceID6" Condition="[logOnCountMain &lt;= 2]" DisplayName="Exceed Attemp Limit?" sap2010:WorkflowViewState.IdRef="FlowDecision_2" True="{x:Reference __ReferenceID0}">
+                            <FlowDecision.False>
+                              <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Failed To Logon on Azure Account" />
+                                <FlowStep.Next>
+                                  <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_27">
+                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="Activity Finished" />
                                     <FlowStep.Next>
-                                      <x:Reference>__ReferenceID1</x:Reference>
-                                    </FlowStep.Next>
-                                  </FlowStep>
-                                </FlowDecision.True>
-                                <FlowDecision.False>
-                                  <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_14">
-                                    <WriteLine DisplayName="Pass Messageline" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;Resource Group &quot; + resGroupNameMain + &quot;  is Created&quot;]" />
-                                    <FlowStep.Next>
-                                      <FlowDecision x:Name="__ReferenceID3" Condition="[createAppServiceMain = True]" DisplayName="New Service Plan" sap2010:WorkflowViewState.IdRef="FlowDecision_6">
-                                        <FlowDecision.True>
-                                          <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_19">
-                                            <TryCatch DisplayName="Create AppServicePlan" sap2010:WorkflowViewState.IdRef="TryCatch_5">
-                                              <TryCatch.Variables>
-                                                <Variable x:TypeArguments="sco:Collection(x:Object)" Name="appServiceCmd" />
-                                              </TryCatch.Variables>
+                                      <FlowStep x:Name="__ReferenceID19" sap2010:WorkflowViewState.IdRef="FlowStep_29">
+                                        <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="Disconnect-AzureRmAccount" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_9" />
+                                        <FlowStep.Next>
+                                          <FlowStep x:Name="__ReferenceID20" sap2010:WorkflowViewState.IdRef="FlowStep_30">
+                                            <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                                               <TryCatch.Try>
-                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
-                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="x:Object">[appServicePlanMain]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                  <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="New-AzureRmAppServicePlan" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_5" Output="[appServiceCmd]">
-                                                    <ui:InvokePowerShell.Parameters>
-                                                      <InArgument x:TypeArguments="x:String" x:Key="Name">[appServiceNameMain]</InArgument>
-                                                      <InArgument x:TypeArguments="x:String" x:Key="Location">[resGroupLocationMain]</InArgument>
-                                                      <InArgument x:TypeArguments="x:Object" x:Key="DefaultProfile">[defaultProfileMain]</InArgument>
-                                                      <InArgument x:TypeArguments="x:String" x:Key="ResourceGroupName">[resGroupNameMain]</InArgument>
-                                                      <InArgument x:TypeArguments="x:String" x:Key="Tier">[appServiceTierMain]</InArgument>
-                                                    </ui:InvokePowerShell.Parameters>
-                                                  </ui:InvokePowerShell>
-                                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="x:Object">[appServicePlanMain]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:Object">[appServiceCmd(0)]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                </Sequence>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Object">[defaultProfileMain]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
                                               </TryCatch.Try>
                                               <TryCatch.Catches>
-                                                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_7">
                                                   <ActivityAction x:TypeArguments="s:Exception">
                                                     <ActivityAction.Argument>
                                                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                                     </ActivityAction.Argument>
-                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[exception.Message]" />
+                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="[exception.Message]" />
                                                   </ActivityAction>
                                                 </Catch>
                                               </TryCatch.Catches>
                                             </TryCatch>
-                                            <FlowStep.Next>
-                                              <FlowDecision x:Name="__ReferenceID14" Condition="[appServicePlanMain is Nothing]" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
-                                                <FlowDecision.True>
-                                                  <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_20">
-                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="App Service Plan is Not Created" />
-                                                    <FlowStep.Next>
-                                                      <x:Reference>__ReferenceID1</x:Reference>
-                                                    </FlowStep.Next>
-                                                  </FlowStep>
-                                                </FlowDecision.True>
-                                                <FlowDecision.False>
-                                                  <FlowStep x:Name="__ReferenceID17" sap2010:WorkflowViewState.IdRef="FlowStep_24">
-                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[&quot;App Service Plan &quot;  + appServiceNameMain + &quot; Created&quot;]" />
-                                                    <FlowStep.Next>
-                                                      <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_21">
-                                                        <Sequence DisplayName="Create WebApp" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                                                          <Sequence.Variables>
-                                                            <Variable x:TypeArguments="sco:Collection(x:Object)" Name="webAppCmdCollOut" />
-                                                          </Sequence.Variables>
-                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
-                                                            <Assign.To>
-                                                              <OutArgument x:TypeArguments="x:Object">[webAppOut]</OutArgument>
-                                                            </Assign.To>
-                                                            <Assign.Value>
-                                                              <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
-                                                            </Assign.Value>
-                                                          </Assign>
-                                                          <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_6">
-                                                            <TryCatch.Try>
-                                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
-                                                                <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="New-AzureRmWebApp" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_7" Output="[webAppCmdCollOut]">
-                                                                  <ui:InvokePowerShell.Parameters>
-                                                                    <InArgument x:TypeArguments="x:String" x:Key="Name">[webAppNameMain]</InArgument>
-                                                                    <InArgument x:TypeArguments="x:String" x:Key="Location">[resGroupLocationMain]</InArgument>
-                                                                    <InArgument x:TypeArguments="x:String" x:Key="AppServicePlan">[appServiceNameMain]</InArgument>
-                                                                    <InArgument x:TypeArguments="x:String" x:Key="ResourceGroupName">[resGroupNameMain]</InArgument>
-                                                                  </ui:InvokePowerShell.Parameters>
-                                                                </ui:InvokePowerShell>
-                                                                <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;Web App&quot; + webAppNameMain + &quot; is CreatedSuccessfully&quot;]" />
-                                                              </Sequence>
-                                                            </TryCatch.Try>
-                                                            <TryCatch.Catches>
-                                                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_6">
-                                                                <ActivityAction x:TypeArguments="s:Exception">
-                                                                  <ActivityAction.Argument>
-                                                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                                                  </ActivityAction.Argument>
-                                                                  <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_11" Text="[exception.Message]" />
-                                                                </ActivityAction>
-                                                              </Catch>
-                                                            </TryCatch.Catches>
-                                                          </TryCatch>
-                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
-                                                            <Assign.To>
-                                                              <OutArgument x:TypeArguments="x:Object">[webAppOut]</OutArgument>
-                                                            </Assign.To>
-                                                            <Assign.Value>
-                                                              <InArgument x:TypeArguments="x:Object">[webAppCmdCollOut(0)]</InArgument>
-                                                            </Assign.Value>
-                                                          </Assign>
-                                                        </Sequence>
+                                          </FlowStep>
+                                        </FlowStep.Next>
+                                      </FlowStep>
+                                    </FlowStep.Next>
+                                  </FlowStep>
+                                </FlowStep.Next>
+                              </FlowStep>
+                            </FlowDecision.False>
+                          </FlowDecision>
+                        </FlowDecision.True>
+                        <FlowDecision.False>
+                          <FlowDecision x:Name="__ReferenceID16" Condition="[createResGroupMain = True]" DisplayName="New Resource Group?" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                            <FlowDecision.True>
+                              <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_12">
+                                <TryCatch DisplayName="Create ResourceGroup" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                  <TryCatch.Variables>
+                                    <Variable x:TypeArguments="sco:Collection(x:Object)" Name="resGrpColl" />
+                                  </TryCatch.Variables>
+                                  <TryCatch.Try>
+                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Object">[resGrpOut]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                        <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="New-AzureRmResourceGroup" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_4" Output="[resGrpColl]">
+                                          <ui:InvokePowerShell.Parameters>
+                                            <InArgument x:TypeArguments="x:String" x:Key="Name">[resGroupNameMain]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="Location">[resGroupLocationMain]</InArgument>
+                                            <InArgument x:TypeArguments="x:Object" x:Key="DefaultProfile">[defaultProfileMain]</InArgument>
+                                          </ui:InvokePowerShell.Parameters>
+                                        </ui:InvokePowerShell>
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Object">[resGrpOut]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Object">[resGrpColl(0)]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </Sequence>
+                                  </TryCatch.Try>
+                                  <TryCatch.Catches>
+                                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                      <ActivityAction x:TypeArguments="s:Exception">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                        </ActivityAction.Argument>
+                                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[exception.Message]" />
+                                      </ActivityAction>
+                                    </Catch>
+                                  </TryCatch.Catches>
+                                </TryCatch>
+                                <FlowStep.Next>
+                                  <FlowDecision x:Name="__ReferenceID9" Condition="[resGrpOut is Nothing]" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                                    <FlowDecision.True>
+                                      <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_15">
+                                        <WriteLine DisplayName="Fail Message" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="Resource Group  is Not Created" />
+                                        <FlowStep.Next>
+                                          <x:Reference>__ReferenceID1</x:Reference>
+                                        </FlowStep.Next>
+                                      </FlowStep>
+                                    </FlowDecision.True>
+                                    <FlowDecision.False>
+                                      <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_14">
+                                        <WriteLine DisplayName="Pass Messageline" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[&quot;Resource Group &quot; + resGroupNameMain + &quot;  is Created&quot;]" />
+                                        <FlowStep.Next>
+                                          <FlowDecision x:Name="__ReferenceID3" Condition="[createAppServiceMain = True]" DisplayName="New Service Plan" sap2010:WorkflowViewState.IdRef="FlowDecision_6">
+                                            <FlowDecision.True>
+                                              <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_19">
+                                                <TryCatch DisplayName="Create AppServicePlan" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                                                  <TryCatch.Variables>
+                                                    <Variable x:TypeArguments="sco:Collection(x:Object)" Name="appServiceCmd" />
+                                                  </TryCatch.Variables>
+                                                  <TryCatch.Try>
+                                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:Object">[appServicePlanMain]</OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                      <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="New-AzureRmAppServicePlan" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_5" Output="[appServiceCmd]">
+                                                        <ui:InvokePowerShell.Parameters>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="Name">[appServiceNameMain]</InArgument>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="Location">[resGroupLocationMain]</InArgument>
+                                                          <InArgument x:TypeArguments="x:Object" x:Key="DefaultProfile">[defaultProfileMain]</InArgument>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="ResourceGroupName">[resGroupNameMain]</InArgument>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="Tier">[appServiceTierMain]</InArgument>
+                                                        </ui:InvokePowerShell.Parameters>
+                                                      </ui:InvokePowerShell>
+                                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:Object">[appServicePlanMain]</OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:Object">[appServiceCmd(0)]</InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                    </Sequence>
+                                                  </TryCatch.Try>
+                                                  <TryCatch.Catches>
+                                                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                                      <ActivityAction x:TypeArguments="s:Exception">
+                                                        <ActivityAction.Argument>
+                                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                        </ActivityAction.Argument>
+                                                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[exception.Message]" />
+                                                      </ActivityAction>
+                                                    </Catch>
+                                                  </TryCatch.Catches>
+                                                </TryCatch>
+                                                <FlowStep.Next>
+                                                  <FlowDecision x:Name="__ReferenceID14" Condition="[appServicePlanMain is Nothing]" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
+                                                    <FlowDecision.True>
+                                                      <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_20">
+                                                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_10" Text="App Service Plan is Not Created" />
                                                         <FlowStep.Next>
                                                           <x:Reference>__ReferenceID1</x:Reference>
                                                         </FlowStep.Next>
                                                       </FlowStep>
-                                                    </FlowStep.Next>
-                                                  </FlowStep>
-                                                </FlowDecision.False>
-                                              </FlowDecision>
-                                            </FlowStep.Next>
-                                          </FlowStep>
-                                        </FlowDecision.True>
-                                        <FlowDecision.False>
-                                          <x:Reference>__ReferenceID2</x:Reference>
-                                        </FlowDecision.False>
-                                      </FlowDecision>
-                                    </FlowStep.Next>
-                                  </FlowStep>
-                                </FlowDecision.False>
-                              </FlowDecision>
-                            </FlowStep.Next>
-                          </FlowStep>
-                        </FlowDecision.True>
-                        <FlowDecision.False>
-                          <x:Reference>__ReferenceID3</x:Reference>
+                                                    </FlowDecision.True>
+                                                    <FlowDecision.False>
+                                                      <FlowStep x:Name="__ReferenceID17" sap2010:WorkflowViewState.IdRef="FlowStep_24">
+                                                        <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[&quot;App Service Plan &quot;  + appServiceNameMain + &quot; Created&quot;]" />
+                                                        <FlowStep.Next>
+                                                          <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_21">
+                                                            <Sequence DisplayName="Create WebApp" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                                              <Sequence.Variables>
+                                                                <Variable x:TypeArguments="sco:Collection(x:Object)" Name="webAppCmdCollOut" />
+                                                              </Sequence.Variables>
+                                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                                                                <Assign.To>
+                                                                  <OutArgument x:TypeArguments="x:Object">[webAppOut]</OutArgument>
+                                                                </Assign.To>
+                                                                <Assign.Value>
+                                                                  <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
+                                                                </Assign.Value>
+                                                              </Assign>
+                                                              <TryCatch DisplayName="Try catch" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                                                <TryCatch.Try>
+                                                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                                                    <ui:InvokePowerShell x:TypeArguments="x:Object" ContinueOnError="{x:Null}" CommandText="New-AzureRmWebApp" DisplayName="Invoke power shell" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_7" Output="[webAppCmdCollOut]">
+                                                                      <ui:InvokePowerShell.Parameters>
+                                                                        <InArgument x:TypeArguments="x:String" x:Key="Name">[webAppNameMain]</InArgument>
+                                                                        <InArgument x:TypeArguments="x:String" x:Key="Location">[resGroupLocationMain]</InArgument>
+                                                                        <InArgument x:TypeArguments="x:String" x:Key="AppServicePlan">[appServiceNameMain]</InArgument>
+                                                                        <InArgument x:TypeArguments="x:String" x:Key="ResourceGroupName">[resGroupNameMain]</InArgument>
+                                                                      </ui:InvokePowerShell.Parameters>
+                                                                    </ui:InvokePowerShell>
+                                                                    <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_12" Text="[&quot;Web App&quot; + webAppNameMain + &quot; is CreatedSuccessfully&quot;]" />
+                                                                  </Sequence>
+                                                                </TryCatch.Try>
+                                                                <TryCatch.Catches>
+                                                                  <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                                                                    <ActivityAction x:TypeArguments="s:Exception">
+                                                                      <ActivityAction.Argument>
+                                                                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                                      </ActivityAction.Argument>
+                                                                      <WriteLine DisplayName="Write line" sap2010:WorkflowViewState.IdRef="WriteLine_11" Text="[exception.Message]" />
+                                                                    </ActivityAction>
+                                                                  </Catch>
+                                                                </TryCatch.Catches>
+                                                              </TryCatch>
+                                                              <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                                                                <Assign.To>
+                                                                  <OutArgument x:TypeArguments="x:Object">[webAppOut]</OutArgument>
+                                                                </Assign.To>
+                                                                <Assign.Value>
+                                                                  <InArgument x:TypeArguments="x:Object">[webAppCmdCollOut(0)]</InArgument>
+                                                                </Assign.Value>
+                                                              </Assign>
+                                                            </Sequence>
+                                                            <FlowStep.Next>
+                                                              <x:Reference>__ReferenceID1</x:Reference>
+                                                            </FlowStep.Next>
+                                                          </FlowStep>
+                                                        </FlowStep.Next>
+                                                      </FlowStep>
+                                                    </FlowDecision.False>
+                                                  </FlowDecision>
+                                                </FlowStep.Next>
+                                              </FlowStep>
+                                            </FlowDecision.True>
+                                            <FlowDecision.False>
+                                              <x:Reference>__ReferenceID2</x:Reference>
+                                            </FlowDecision.False>
+                                          </FlowDecision>
+                                        </FlowStep.Next>
+                                      </FlowStep>
+                                    </FlowDecision.False>
+                                  </FlowDecision>
+                                </FlowStep.Next>
+                              </FlowStep>
+                            </FlowDecision.True>
+                            <FlowDecision.False>
+                              <x:Reference>__ReferenceID3</x:Reference>
+                            </FlowDecision.False>
+                          </FlowDecision>
                         </FlowDecision.False>
                       </FlowDecision>
-                    </FlowDecision.False>
-                  </FlowDecision>
+                    </FlowStep.Next>
+                  </FlowStep>
                 </FlowStep.Next>
               </FlowStep>
             </FlowStep.Next>
@@ -383,14 +419,21 @@
     <x:Reference>__ReferenceID16</x:Reference>
     <x:Reference>__ReferenceID17</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
-    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_26">
-      <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Activity To Create Azure Web App " />
-    </FlowStep>
+    <x:Reference>__ReferenceID18</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
-    <sads:DebugSymbol.Symbol>d0ZDOlxVc2Vyc1xzYWphdmVkXERvY3VtZW50c1xVaVBhdGhcQXp1cmVBY3Rpdml0eVxDcmVhdGVBenVyZVdlYkFwcC54YW1sbEgDhwMPAgEBSjNKNgIBDEs0Sz8CAQtMNEw/AgEKTTRNPwIBCU40TkUCAQhPNE9IAgEHUDRQQQIBBlE0UUQCAQVSNFI6AgEEUzVTPAIBA1Q1VDwCAQJYCX8UAwGFAZUBQ5UBZAMBgwGMARGTARoCAX6XAUeXAWECAXyaAR2aAZkBAgF6qAEd0wEoAgFh1QFP1QFnAgFf4AEl4AHSAQIBXNgBJdgBoQECAVqCAQ2JARYCAVXlAS2QAjgCATmSAmCSAoEBAgE3lQI1lQKxAQIBNaACOc0CRAIBF6UBSKUBZQIBFZ0CNZ0C3gECARLiAVfiAXYCARCDAweDA20CAQ+dASGdAY8BAgENWzpbRQMBhgFdC12GAQMBmgFeC34WAwGHAZEBO5EBTwMBgQGOATyOAUwCAX+aAXSaAZYBAgF7rQEhxwEsAgFlzwElzwGUAQIBYuABggHgAc8BAgFd2AF+2AGeAQIBW4cBOIcBSAIBWIQBOYQBTQIBVuoBMYQCPAIBPYwCNYwCpAECATqVAo0BlQKuAQIBNqQCO6sCRAIBMawCO8QCRgIBHcUCO8wCRAIBGJ0CjQGdAtsBAgETnQF5nQGMAQIBDmAPchoDAYsBehN6ggEDAYgBrgEjtQEsAgF2tgEjxgEuAgFmzwF8zwGRAQIBY+sBM/IBPAIBUfMBM/sBSQIBQ/wBM4MCPAIBPowCjAGMAqEBAgE7qQJmqQJvAgE0pgJnpgJyAgEyrgI/uAJKAgEhwAJDwAKzAQIBHsoCZsoCewIBG8cCZ8cCcgIBGWERYfgBAwGWAWIRaRoDAZEBahFxGgMBjAF6anp/AwGJAbMBTrMBVwIBebABT7ABWgIBd7cBJb0BOwIBbL4BJcUBLgIBZ/ABXvABZwIBVO0BX+0BcwIBUvYBb/YBhQECAU/zAYUC8wGWAgIBTfMBigHzAaUBAgFM+QFr+QF/AgFK+AF4+AGKAQIBSPcBdfcBiQECAUb1AWv1AX8CAUSBAl6BAnACAUH+AV/+AXMCAT+vAkG2AlcCASW3AkG3AuoBAgEiwAKbAcACsAECAR9h5AFh9QEDAZgBYWhhgAEDAZcBZzxnUwMBlAFkPWRKAwGSAW88b0kDAY8BbD1sTQMBjQG6AWG6AXcCAXS3AfYBtwGEAgIBcrcBfLcBlgECAXG7AWe7AXsCAW+5AV25AW8CAW3DAVDDAV8CAWrAAVHAAVwCAWiyAn2yApMBAgEvrwKLAq8CnwICAS2vApgBrwKrAQIBLLMCgwGzApcBAgEqtAKGAbQCmAECASixAnmxAokBAgEmtwKZAbcC5wECASM=</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID19</x:Reference>
+    <x:Reference>__ReferenceID20</x:Reference>
+    <sads:DebugSymbol.Symbol>d2VDOlxVc2Vyc1xzYWphdmVkXE9uZURyaXZlIC0gQWxzdG9tXEdJVEhVQlxVaVBhdGgtV29ya2Zsb3dzLUZvci1NaWNyb3NvZnQtQXp1cmVcQ3JlYXRlQXp1cmVXZWJBcHAueGFtbHRIA6sDDwIBAUozSjYCAQxLNEs/AgELTDRMPwIBCk00TT8CAQlONE5HAgEITzRPRwIBB1A0UEECAQZRNFFDAgEFUjRSOgIBBFM1UzwCAQNUNVQ8AgECWw2CARgDAY8BmAFHmAFoAwGNAY8BFZYBHgMBiAGaAUuaAWUDAYYBnQEhnQGdAQMBhAHKASH1ASwCAWv3AVP3AWsCAWmCAimCAtYBAgFm+gEp+gGlAQIBZIUBEYwBGgIBX4cCMbICPAIBQ7QCZLQChQECAUG3Ajm3ArUBAgE/wgI97wJIAgEhxwFMxwFpAgEfvwI5vwLiAQIBHIQCW4QCegIBGlgJWG8CARmgASWgAZMBAgEXowEpowH2AQIBFaYBLbsBOAIBDV4+XkkDAZABYA9gigEDAaQBYQ+BARoDAZEBlAE/lAFTAwGLAZEBQJEBUAMBiQGdAXidAZoBAwGFAc8BJekBMAIBb/EBKfEBmAECAWyCAoYBggLTAQIBZ/oBggH6AaIBAgFligE8igFMAgFihwE9hwFRAgFgjAI1pgJAAgFHrgI5rgKoAQIBRLcCkQG3ArIBAgFAxgI/zQJIAgE7zgI/5gJKAgEn5wI/7gJIAgEivwKRAb8C3wECAR2gAX2gAZABAgEYowGAAaMBmwECARaoATGvAToCARG3ATW3AaUBAgEOYxN1HgMBlQF9F32GAQMBkgHQASfXATADAYAB2AEn6AEyAgFw8QGAAfEBlQECAW2NAjeUAkACAVuVAjedAk0CAU2eAjelAkACAUiuApABrgKlAQIBRcsCassCcwIBPsgCa8gCdgIBPNACQ9oCTgIBK+ICR+ICtwECASjsAmrsAn8CASXpAmvpAnYCASOtAVytAWUCARSqAV2qAXECARK3AY0BtwGiAQIBD2QVZPwBAwGgAWUVbB4DAZsBbRV0HgMBlgF9bn2DAQMBkwHVAVLVAVsDAYMB0gFT0gFeAwGBAdkBKd8BPwIBduABKecBMgIBcZICYpICawIBXo8CY48CdwIBXJgCc5gCiQECAVmVAokClQKaAgIBV5UCjgGVAqkBAgFWmwJvmwKDAQIBVJoCfJoCjgECAVKZAnmZAo0BAgFQlwJvlwKDAQIBTqMCYqMCdAIBS6ACY6ACdwIBSdECRdgCWwIBL9kCRdkC7gECASziAp8B4gK0AQIBKWToAWT5AQMBogFkbGSEAQMBoQFqQGpXAwGeAWdBZ04DAZwBckByTQMBmQFvQW9RAwGXAdwBZdwBewIBftkB+gHZAYgCAgF82QGAAdkBmgECAXvdAWvdAX8CAXnbAWHbAXMCAXflAVTlAWMCAXTiAVXiAWACAXLUAoEB1AKXAQIBOdECjwLRAqMCAgE30QKcAdECrwECATbVAocB1QKbAQIBNNYCigHWApwBAgEy0wJ90wKNAQIBMNkCnQHZAusBAgEt</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Comment_2" sap:VirtualizedContainerService.HintSize="314,56">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="418,74" />
       <sap2010:ViewStateData Id="InvokePowerShell`1_1" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314,60" />
@@ -412,7 +455,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,610" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="200,52">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -433,17 +476,60 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="210,61">
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="210,62">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_14" sap:VirtualizedContainerService.HintSize="210,61">
+      <sap2010:ViewStateData Id="WriteLine_14" sap:VirtualizedContainerService.HintSize="210,62">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokePowerShell`1_9" sap:VirtualizedContainerService.HintSize="200,52" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WriteLine_15" sap:VirtualizedContainerService.HintSize="210,62" />
+      <sap2010:ViewStateData Id="Catch`1_7" sap:VirtualizedContainerService.HintSize="404,132">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_7" sap:VirtualizedContainerService.HintSize="200,52">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_30">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">970,1734</av:Point>
+            <av:Size x:Key="ShapeSize">200,52</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_29">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">970,1654</av:Point>
+            <av:Size x:Key="ShapeSize">200,52</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">1070,1706 1070,1734</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -451,8 +537,8 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">965,1559</av:Point>
-            <av:Size x:Key="ShapeSize">210,61</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">1080,1441 1080,1484</av:PointCollection>
+            <av:Size x:Key="ShapeSize">210,62</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">1070,1621 1070,1654</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -460,7 +546,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">85,909.5</av:Point>
-            <av:Size x:Key="ShapeSize">210,61</av:Size>
+            <av:Size x:Key="ShapeSize">210,62</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">190,971.5 190,1590 965,1590</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -494,7 +580,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_6" sap:VirtualizedContainerService.HintSize="210,62" />
-      <sap2010:ViewStateData Id="Catch`1_4" sap:VirtualizedContainerService.HintSize="404,22">
+      <sap2010:ViewStateData Id="Catch`1_4" sap:VirtualizedContainerService.HintSize="404,132">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -502,8 +588,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="200,51" />
-      <sap2010:ViewStateData Id="WriteLine_8" sap:VirtualizedContainerService.HintSize="210,61">
+      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="200,52" />
+      <sap2010:ViewStateData Id="WriteLine_8" sap:VirtualizedContainerService.HintSize="210,62">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -514,12 +600,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">235,999</av:Point>
-            <av:Size x:Key="ShapeSize">210,61</av:Size>
+            <av:Size x:Key="ShapeSize">210,62</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">340,1061 340,1590 965,1590</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="210,61">
+      <sap2010:ViewStateData Id="WriteLine_7" sap:VirtualizedContainerService.HintSize="210,62">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -545,8 +631,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_5" sap:VirtualizedContainerService.HintSize="200,51" />
-      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="210,61">
+      <sap2010:ViewStateData Id="TryCatch_5" sap:VirtualizedContainerService.HintSize="200,52" />
+      <sap2010:ViewStateData Id="WriteLine_10" sap:VirtualizedContainerService.HintSize="210,62">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -557,12 +643,12 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">425,1369</av:Point>
-            <av:Size x:Key="ShapeSize">210,61</av:Size>
+            <av:Size x:Key="ShapeSize">210,62</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">530,1431 530,1590 965,1590</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="210,61">
+      <sap2010:ViewStateData Id="WriteLine_13" sap:VirtualizedContainerService.HintSize="210,62">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -580,7 +666,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteLine_11" sap:VirtualizedContainerService.HintSize="210,62" />
-      <sap2010:ViewStateData Id="Catch`1_6" sap:VirtualizedContainerService.HintSize="404,22">
+      <sap2010:ViewStateData Id="Catch`1_6" sap:VirtualizedContainerService.HintSize="404,132">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -588,9 +674,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_6" sap:VirtualizedContainerService.HintSize="418,517" />
+      <sap2010:ViewStateData Id="TryCatch_6" sap:VirtualizedContainerService.HintSize="418,731" />
       <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="418,60" />
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="200,52">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -601,7 +687,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">970,1474</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:Size x:Key="ShapeSize">200,52</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">1070,1526 1070,1559</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -610,7 +696,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">965,1369</av:Point>
-            <av:Size x:Key="ShapeSize">210,61</av:Size>
+            <av:Size x:Key="ShapeSize">210,62</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">1070,1431 1070,1474</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -630,7 +716,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">690,1244</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:Size x:Key="ShapeSize">200,52</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">790,1296 790,1356.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -650,7 +736,7 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">685,999</av:Point>
-            <av:Size x:Key="ShapeSize">210,61</av:Size>
+            <av:Size x:Key="ShapeSize">210,62</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">790,1061 790,1091 1023,1091 1023,1136.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -670,17 +756,17 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">450,884</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:Size x:Key="ShapeSize">200,52</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">550,936 550,986.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowDecision_5" sap:VirtualizedContainerService.HintSize="122,87">
+      <sap2010:ViewStateData Id="FlowDecision_5" sap:VirtualizedContainerService.HintSize="123,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <av:Point x:Key="ShapeLocation">705,776.5</av:Point>
-            <av:Size x:Key="ShapeSize">122,87</av:Size>
+            <av:Size x:Key="ShapeSize">123,87</av:Size>
             <av:PointCollection x:Key="TrueConnector">705,820 550,820 550,884</av:PointCollection>
             <av:PointCollection x:Key="FalseConnector">828,820 1023,820 1023,1136.5</av:PointCollection>
           </scg:Dictionary>
@@ -719,39 +805,40 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,464.5</av:Point>
-            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:Size x:Key="ShapeSize">200,52</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">300,516.5 300,530</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Comment_2" sap:VirtualizedContainerService.HintSize="314,55">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_26">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">153,252</av:Point>
-            <av:Size x:Key="ShapeSize">314,55</av:Size>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="1302,1667">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <av:Point x:Key="ShapeLocation">270,342.5</av:Point>
-            <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <x:Double x:Key="Width">1288</x:Double>
-            <x:Double x:Key="Height">1631</x:Double>
+            <av:Point x:Key="ShapeLocation">143,362.5</av:Point>
+            <av:Size x:Key="ShapeSize">314,56</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">300,417.5 300,464.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CreateAzureUserGroup_1" sap:VirtualizedContainerService.HintSize="1342,2107" />
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="1327,1878">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,232.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <x:Double x:Key="Width">1312.6305863538994</x:Double>
+            <x:Double x:Key="Height">1841.5374373082952</x:Double>
+            <av:PointCollection x:Key="ConnectorLocation">300,307.5 300,362.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CreateAzureUserGroup_1" sap:VirtualizedContainerService.HintSize="1342,1747">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+            <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
